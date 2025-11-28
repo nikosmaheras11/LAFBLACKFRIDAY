@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Club Studio Animated Header
 
 An animated header component featuring a floating image grid system with smooth rotation effects. Designed for seamless WordPress integration.
@@ -266,3 +267,7 @@ MIT License - feel free to use and modify for your projects.
 ## Support
 
 For issues or questions, please open an issue in the repository.
+=======
+# LAFBLACKFRIDAY
+Black Friday Offer Page
+>>>>>>> 34a974c66d183a09d1ee921bb7ebf92963203682
