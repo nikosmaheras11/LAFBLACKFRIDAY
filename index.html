@@ -7,32 +7,38 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Animated Background Grid with Floating Images -->
-    <div class="floating-bg-container">
-        <div class="grid-overlay">
-            <!-- Grid items will be populated by JavaScript -->
+    <!-- Hero Section with Background Grid -->
+    <section class="hero-section">
+        <!-- Animated Background Grid with Floating Images -->
+        <div class="floating-bg-container">
+            <div class="grid-overlay">
+                <!-- Grid items will be populated by JavaScript -->
+            </div>
         </div>
-    </div>
 
-    <!-- Main Header -->
-    <header class="site-header">
+        <!-- Navbar -->
+        <header class="site-header">
         <div class="header-container">
             <!-- Logo -->
             <div class="header-logo">
                 <a href="/">
-                    <span class="logo-text">CLUB STUDIO</span>
+                    <span class="logo-text">LA|FITNESS<sup class="logo-reg">®</sup></span>
                 </a>
             </div>
 
             <!-- Navigation -->
             <nav class="header-nav">
                 <ul class="nav-menu">
-                    <li class="nav-item"><a href="#work">Work</a></li>
-                    <li class="nav-item"><a href="#about">About</a></li>
-                    <li class="nav-item"><a href="#services">Services</a></li>
-                    <li class="nav-item"><a href="#contact">Contact</a></li>
+                    <li class="nav-item"><a href="#memberships">Memberships</a></li>
+                    <li class="nav-item"><a href="#locations">Locations</a></li>
+                    <li class="nav-item"><a href="#classes">Classes</a></li>
+                    <li class="nav-item"><a href="#more">More</a></li>
                 </ul>
             </nav>
+
+            <div class="header-cta">
+                <a href="#join" class="join-btn">Join</a>
+            </div>
 
             <!-- Mobile Menu Toggle -->
             <button class="mobile-menu-toggle" aria-label="Toggle menu">
@@ -43,11 +49,509 @@
         </div>
     </header>
 
-    <!-- Demo Content (Remove in WordPress) -->
-    <main style="padding: 200px 20px; text-align: center;">
-        <h1>Demo Content Below Header</h1>
-        <p>This content demonstrates the header in action.</p>
-    </main>
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <div class="text-wrap">
+                <p class="hero-eyebrow">OUR OFFER HAS ARRIVED</p>
+                <h1 class="hero-heading">
+                    <span class="text-gray">The hard part is starting. </span><span class="text-dark">The rest? We'll get you there.</span>
+                </h1>
+                <div class="hero-cta">
+                    <button class="black-friday-btn">
+                        <span class="btn-label">Black Friday</span>
+                        <span class="divider"></span>
+                        <span class="btn-timer">Expires in <strong>16:12:37</strong></span>
+                        <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <p class="expiration-text">expires December 2nd</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="brand-info">
+                <div class="brand-logo">
+                    <span class="logo-text-large">LA|FITNESS</span>
+                </div>
+                <p class="brand-tagline">TURNING MOTIVATION<br>INTO RESULTS SINCE '84</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <p class="stat-number stat-orange">600+</p>
+                    <p class="stat-label">Locations Nationwide</p>
+                </div>
+                
+                <div class="stat-card">
+                    <p class="stat-number stat-dark">30+</p>
+                    <p class="stat-label">Ways To Move</p>
+                </div>
+                
+                <div class="stat-card">
+                    <p class="stat-number stat-orange">40+</p>
+                    <p class="stat-label">Years helping members</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workout Offerings Section -->
+    <section class="offerings-section">
+        <div class="offerings-container">
+            <!-- Section Title -->
+            <div class="section-title">
+                <p class="section-eyebrow">ONE PLACE FOR ALL THE WAYS YOU WORKOUT</p>
+                <h2 class="section-heading">Everyone's here for something <span class="text-orange">different</span></h2>
+                <p class="section-description">You're bound to find something that hits for you.</p>
+            </div>
+
+            <!-- Masonry Grid -->
+            <div class="offerings-grid">
+                <!-- Column 1 -->
+                <div class="grid-column">
+                    <div class="offering-card card-tall">
+                        <img src="assets/images/classes.png" alt="Classes" class="card-image">
+                        <div class="card-overlay"></div>
+                        <div class="card-content">
+                            <p class="card-tag">CLASSES</p>
+                            <h3 class="card-title">Some people come for the classes</h3>
+                            <p class="card-text">The energy. The music. The instructor who makes burpees feel less terrible.</p>
+                        </div>
+                    </div>
+                    <div class="offering-card card-short">
+                        <img src="assets/images/gym-floor.png" alt="Gym Floor" class="card-image">
+                        <div class="card-overlay"></div>
+                        <div class="card-content">
+                            <p class="card-tag">GYM FLOOR</p>
+                            <h3 class="card-title">Some people come for the weights</h3>
+                            <p class="card-text">Headphones on. World off. Just them and the bar.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="grid-column">
+                    <div class="offering-card card-medium">
+                        <img src="assets/images/amenities.png" alt="Amenities" class="card-image">
+                        <div class="card-overlay card-overlay-darker"></div>
+                        <div class="card-content">
+                            <p class="card-tag">AMENITIES</p>
+                            <h3 class="card-title">Some people come for the extras</h3>
+                            <p class="card-text">Pool and Spa. Sauna.<br>Functional Turf & Training Zone. And More.</p>
+                        </div>
+                    </div>
+                    <div class="offering-card card-medium">
+                        <img src="assets/images/community.png" alt="Community" class="card-image">
+                        <div class="card-overlay"></div>
+                        <div class="card-content">
+                            <p class="card-tag">COMMUNITY</p>
+                            <h3 class="card-title">Some people come for the feels</h3>
+                            <p class="card-text">A team to make everyday achievable.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 3 -->
+                <div class="grid-column">
+                    <div class="offering-card card-tall">
+                        <img src="assets/images/variety.png" alt="Variety" class="card-image">
+                        <div class="card-overlay"></div>
+                        <div class="card-content">
+                            <p class="card-tag">VARIETY</p>
+                            <h3 class="card-title">Some people come for all of it</h3>
+                            <p class="card-text">Weights Monday. Yoga Wednesday. Pool Friday. Basketball whenever.</p>
+                        </div>
+                    </div>
+                    <div class="offering-card card-short card-cta">
+                        <div class="card-content card-content-center">
+                            <h3 class="card-title">Some people are still figuring it out</h3>
+                            <p class="card-text card-text-large">That's fine. That's what this place is for. Try everything.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="offerings-cta">
+                <button class="promo-btn">
+                    <span class="promo-label">$0 Initiation</span>
+                    <span class="promo-divider"></span>
+                    <span class="promo-text">Limited Time Offer</span>
+                    <svg class="promo-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                
+                <div class="pricing-breakdown">
+                    <div class="pricing-row">
+                        <div class="price-strike-wrapper">
+                            <span class="price-old">$99</span>
+                            <span class="price-new">$0</span>
+                        </div>
+                        <span class="price-label">Initiation Fee</span>
+                    </div>
+                    <div class="pricing-row">
+                        <span class="price-amount">$39.99</span>
+                        <span class="price-label">Per Month (recurring)</span>
+                    </div>
+                    <div class="pricing-row">
+                        <span class="price-amount">$59.00</span>
+                        <span class="price-label">Annual Fee (recurring)</span>
+                    </div>
+                    <div class="pricing-row">
+                        <span class="price-amount">$79.98</span>
+                        <span class="price-label">Total initial Payment*</span>
+                    </div>
+                    <p class="pricing-disclaimer">The total due today, plus the first annual fee due 14 days after enrolling, is $138.98 (plus tax where applicable) Annual fee will be billed yearly thereafter.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reality Check Section -->
+    <section class="reality-section">
+        <div class="reality-container">
+            <!-- Section Title -->
+            <div class="section-title">
+                <p class="section-eyebrow">LET'S BE REAL</p>
+                <h2 class="section-heading reality-heading">Gyms fail you when they don't fit your life. Too boring. Too far. Too limited.</h2>
+            </div>
+
+            <!-- Dark Card -->
+            <div class="reality-card">
+                <div class="reality-card-header">
+                    <p class="reality-tag">THE REALITY</p>
+                    <h3 class="reality-title">Most <span class="text-muted">gyms</span> don't understand <span class="text-darker">you.</span></h3>
+                    <p class="reality-subtitle">(but we got you)</p>
+                </div>
+
+                <div class="reality-content">
+                    <!-- Row 1 -->
+                    <div class="reality-row">
+                        <div class="reality-item">
+                            <h4 class="item-heading">You've tried before.<br>It didn't stick.</h4>
+                            <p class="item-text">We've been doing this for 40 years. We know what keeps people coming back. 30+ ways to move. Always something that works for YOU.</p>
+                        </div>
+                        <div class="reality-item">
+                            <h4 class="item-heading">You're busy.<br>Really busy.</h4>
+                            <p class="item-text">600 clubs. One membership.<br>Near home, work, and everywhere in between. When life moves, your routine moves with you.</p>
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="reality-row">
+                        <div class="reality-item">
+                            <h4 class="item-heading">Value That Feels Right.</h4>
+                            <p class="item-text"><strong class="text-orange">LA Fitness</strong><br>everything you'll actually use at a price that makes sense.<br><br><strong class="text-white">Budget gyms</strong><br>bare basics, overcrowded.<br>Boutiques: one thing at a premium.</p>
+                        </div>
+                        <div class="reality-item">
+                            <h4 class="item-heading">You want results,<br>not judgment.</h4>
+                            <p class="item-text">Beginners to athletes.<br>Everyone's welcome.<br>Everyone's working on something.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secret Section -->
+    <section class="secret-section">
+        <!-- Blurred Background Images -->
+        <div class="secret-bg secret-bg-1">
+            <img src="assets/images/gradient-bg-1.png" alt="">
+        </div>
+        <div class="secret-bg secret-bg-2">
+            <img src="assets/images/gradient-bg-2.png" alt="">
+        </div>
+        
+        <div class="secret-container">
+            <!-- White Card -->
+            <div class="secret-card">
+                <div class="secret-card-header">
+                    <p class="secret-tag">THE SECRET</p>
+                    <div class="secret-title-group">
+                        <h3 class="secret-title">Here's <span class="text-orange">the secret</span></h3>
+                        <p class="secret-description">You don't have to love everything. Just find one thing that doesn't feel like work.</p>
+                    </div>
+                </div>
+
+                <div class="secret-content">
+                    <!-- Row 1 -->
+                    <div class="secret-row">
+                        <div class="secret-item">
+                            <h4 class="secret-item-heading">15+ types of classes<br>always available</h4>
+                            <p class="secret-item-text">Yoga. Cycle. HIIT. Pilates. Kickboxing. Zumba® Class. Body Works & More.</p>
+                        </div>
+                        <div class="secret-item">
+                            <h4 class="secret-item-heading">Do your<br>own thing</h4>
+                            <p class="secret-item-text">Free weights. Our LIFT Room. Machines. Functional turf. Cardio that works.</p>
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="secret-row">
+                        <div class="secret-item">
+                            <h4 class="secret-item-heading">Some days<br>you push</h4>
+                            <p class="secret-item-text">You're not trying to be a bodybuilder. You just want to feel better. Look better. Have more energy.</p>
+                        </div>
+                        <div class="secret-item">
+                            <h4 class="secret-item-heading">Fitness doesn't<br>have to be a treadmill</h4>
+                            <p class="secret-item-text">You want something in between. Something that doesn't feel flat. Something where the value just feels right.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <div class="cta-text">
+                <h2 class="cta-title">Find your club <span class="text-yellow">today</span></h2>
+                <p class="cta-description">$0 down. Cancel anytime.<br>Black Friday Offer ends December 2nd.</p>
+            </div>
+            
+            <div class="cta-buttons">
+                <button class="cta-promo-btn">
+                    <span class="cta-promo-label">$0 Initiation</span>
+                    <span class="cta-promo-divider"></span>
+                    <span class="cta-promo-text">Limited Time Offer</span>
+                    <svg class="cta-promo-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                
+                <div class="cta-pricing-breakdown">
+                    <div class="cta-pricing-row">
+                        <div class="cta-price-strike-wrapper">
+                            <span class="cta-price-old">$99</span>
+                            <span class="cta-price-new">$0</span>
+                        </div>
+                        <span class="cta-price-label">Initiation Fee</span>
+                    </div>
+                    <div class="cta-pricing-row">
+                        <span class="cta-price-amount">$39.99</span>
+                        <span class="cta-price-label">Per Month (recurring)</span>
+                    </div>
+                    <div class="cta-pricing-row">
+                        <span class="cta-price-amount">$59.00</span>
+                        <span class="cta-price-label">Annual Fee (recurring)</span>
+                    </div>
+                    <div class="cta-pricing-row">
+                        <span class="cta-price-amount">$79.98</span>
+                        <span class="cta-price-label">Total initial Payment*</span>
+                    </div>
+                    <p class="cta-pricing-disclaimer">The total due today, plus the first annual fee due 14 days after enrolling, is $138.98 (plus tax where applicable) Annual fee will be billed yearly thereafter.</p>
+                </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Carousel Section -->
+    <section class="testimonials-section">
+        <div class="testimonials-header">
+            <p class="section-eyebrow">TESTIMONIALS</p>
+            <h2 class="section-heading">Join the fam</h2>
+        </div>
+
+        <div class="testimonials-carousel">
+            <div class="testimonials-track">
+                <!-- Card 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="assets/images/testimonial-placeholder.png" alt="Member testimonial">
+                        <button class="play-btn" aria-label="Play video">
+                            <svg width="96" height="96" viewBox="0 0 96 96" fill="none">
+                                <circle cx="48" cy="48" r="48" fill="white" fill-opacity="0.9"/>
+                                <path d="M38 32L62 48L38 64V32Z" fill="#14142b"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="testimonial-quote">
+                        <p>"It has completely changed my focus and motivation"</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="assets/images/testimonial-placeholder.png" alt="Member testimonial">
+                        <button class="play-btn" aria-label="Play video">
+                            <svg width="96" height="96" viewBox="0 0 96 96" fill="none">
+                                <circle cx="48" cy="48" r="48" fill="white" fill-opacity="0.9"/>
+                                <path d="M38 32L62 48L38 64V32Z" fill="#14142b"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="testimonial-quote">
+                        <p>"It has completely changed my focus and motivation"</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 (Featured - Larger) -->
+                <div class="testimonial-card testimonial-card-featured">
+                    <div class="testimonial-image">
+                        <img src="assets/images/testimonial-placeholder.png" alt="Member testimonial">
+                        <button class="play-btn" aria-label="Play video">
+                            <svg width="96" height="96" viewBox="0 0 96 96" fill="none">
+                                <circle cx="48" cy="48" r="48" fill="white" fill-opacity="0.9"/>
+                                <path d="M38 32L62 48L38 64V32Z" fill="#14142b"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="testimonial-quote">
+                        <p>"It has completely changed my focus and motivation"</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="assets/images/testimonial-placeholder.png" alt="Member testimonial">
+                        <button class="play-btn" aria-label="Play video">
+                            <svg width="96" height="96" viewBox="0 0 96 96" fill="none">
+                                <circle cx="48" cy="48" r="48" fill="white" fill-opacity="0.9"/>
+                                <path d="M38 32L62 48L38 64V32Z" fill="#14142b"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="testimonial-quote">
+                        <p>"It has completely changed my focus and motivation"</p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="assets/images/testimonial-placeholder.png" alt="Member testimonial">
+                        <button class="play-btn" aria-label="Play video">
+                            <svg width="96" height="96" viewBox="0 0 96 96" fill="none">
+                                <circle cx="48" cy="48" r="48" fill="white" fill-opacity="0.9"/>
+                                <path d="M38 32L62 48L38 64V32Z" fill="#14142b"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="testimonial-quote">
+                        <p>"It has completely changed my focus and motivation"</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn prev" aria-label="Previous">&#10094;</button>
+            <button class="carousel-btn next" aria-label="Next">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- Try For Free Section -->
+    <section class="try-free-section">
+        <!-- Blurred Background -->
+        <div class="try-free-bg">
+            <img src="assets/images/gradient-bg-1.png" alt="">
+        </div>
+        
+        <div class="try-free-container">
+            <div class="try-free-card">
+                <div class="try-free-header">
+                    <p class="try-free-tag">NOT READY TO PULL THE TRIGGER?</p>
+                    <h2 class="try-free-title">Try us <span class="text-orange">for free</span></h2>
+                    <p class="try-free-description">Find Your Club, and experience all LA Fitness has to offer!</p>
+                </div>
+
+                <div class="try-free-content">
+                    <!-- Row 1 -->
+                    <div class="try-free-row">
+                        <div class="try-free-item">
+                            <h3 class="try-free-item-heading">Find your home club(s)</h3>
+                            <p class="try-free-item-text">Your free pass arrives in about<br>two minutes. No waiting.</p>
+                        </div>
+                        <div class="try-free-item">
+                            <h3 class="try-free-item-heading">Pick your club and visit</h3>
+                            <p class="try-free-item-text">Tour the place.<br>Try a class. Find your new<br>favorite way to move.</p>
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="try-free-row">
+                        <div class="try-free-item">
+                            <h3 class="try-free-item-heading">Show up and start</h3>
+                            <p class="try-free-item-text">We handle the rest.<br>You just bring yourself.</p>
+                        </div>
+                        <div class="try-free-item">
+                            <h3 class="try-free-item-heading">Ready To Try?</h3>
+                            <button class="free-pass-btn">
+                                <span>Claim Your Free Pass</span>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- Left: Brand Info -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="footer-logo-text">LA|FITNESS</span>
+                        <span class="footer-logo-reg">®</span>
+                    </div>
+                    <div class="footer-description">
+                        <p>Founded in Southern California in 1984, LA Fitness continues to seek innovative ways to enhance the physical and emotional well-being of our increasingly diverse membership base.</p>
+                        <p>With our wide range of amenities and highly trained staff, we provide fun and effective workout options for members of all fitness levels and interests.</p>
+                    </div>
+                </div>
+
+                <!-- Right: Social Links -->
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" fill="white"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="4" stroke="white" stroke-width="2"/>
+                            <circle cx="18" cy="6" r="1" fill="white"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="X (Twitter)">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="white"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="YouTube">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z" fill="white"/>
+                            <path d="M9.75 15.02l5.75-3.27-5.75-3.27v6.54z" fill="#020407"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer Credits -->
+            <div class="footer-credits">
+                <div class="footer-credits-row">
+                    <p class="footer-copyright">© 2025 LA Fitness. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">Cookies Settings</a>
+                        <a href="#" class="footer-link">Terms of Service</a>
+                        <a href="#" class="footer-link">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
