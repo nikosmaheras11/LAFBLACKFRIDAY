@@ -359,25 +359,26 @@ main {
     .header-nav {
         position: fixed;
         top: 80px;
-        left: 16px;
-        right: 16px;
-        width: auto;
+        left: 50%;
+        transform: translate(-50%, -150%);
+        width: calc(100% - 32px);
+        max-width: 500px;
         background: white;
         backdrop-filter: blur(16px);
         border: 2px solid rgba(20, 20, 43, 0.05);
         border-radius: 12px;
-        transform: translateY(-150%);
         opacity: 0;
         transition: all 0.3s ease;
         pointer-events: none;
-        max-width: calc(100% - 32px);
         padding: 12px 20px;
         max-height: calc(100vh - 110px);
         overflow-y: auto;
+        overflow-x: hidden;
+        box-sizing: border-box;
     }
     
     .header-nav.active {
-        transform: translateY(0);
+        transform: translate(-50%, 0);
         opacity: 1;
         pointer-events: all;
     }
@@ -449,6 +450,8 @@ main {
         font-weight: 600;
         color: rgba(20, 20, 43, 0.7);
         padding: 0;
+        word-break: break-word;
+        overflow-wrap: break-word;
     }
     
     .dropdown-menu li a::after {
