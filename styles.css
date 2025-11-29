@@ -572,14 +572,29 @@ main {
     .black-friday-btn {
         font-size: 14px;
         padding: 8px 12px;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: center;
-        white-space: nowrap;
+        gap: 6px;
+        width: auto;
+        max-width: 100%;
     }
     
-    .btn-label,
+    .btn-label {
+        font-size: 13px;
+    }
+    
     .btn-timer {
-        white-space: nowrap;
+        font-size: 13px;
+    }
+    
+    .divider {
+        height: 16px;
+    }
+    
+    .arrow-icon {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
     }
     
     .expiration-text {
@@ -636,6 +651,26 @@ main {
     .expiration-text {
         color: #ffbc15;
         text-transform: uppercase;
+    }
+}
+
+/* ===================================
+   SMALLER MOBILE BREAKPOINT
+   =================================== */
+@media (max-width: 380px) {
+    .black-friday-btn {
+        font-size: 12px;
+        padding: 6px 10px;
+        gap: 4px;
+    }
+    
+    .btn-label,
+    .btn-timer {
+        font-size: 11px;
+    }
+    
+    .divider {
+        display: none;
     }
 }
 
