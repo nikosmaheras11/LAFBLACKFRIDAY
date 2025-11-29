@@ -42,162 +42,6 @@
 })();
 
 // ===================================
-// CONFIGURATION
-// ===================================
-const CONFIG = {
-    gridColumns: 6,
-    gridRows: 4,
-    sequenceInterval: 6000, // milliseconds before switching to next sequence
-    fadeDuration: 1200, // milliseconds for fade transition
-    imagePaths: [
-        // Actual Figma images
-        'assets/images/image1.png',
-        'assets/images/image2.png',
-        'assets/images/image3.png',
-        'assets/images/image4.png',
-        'assets/images/image5.png',
-        'assets/images/image6.png',
-        'assets/images/image7.png',
-        'assets/images/image8.png',
-        'assets/images/image9.png',
-        'assets/images/image10.png',
-        'assets/images/image11.png',
-        'assets/images/image12.png'
-    ],
-    // Three predefined sequences from Figma designs
-    // Each sequence shows 5 images in specific grid positions
-    sequences: [
-        // Sequence 1 (Figma: 140-7458)
-        [
-            { index: 0, borderRadius: '12px', image: 0 },   // Row 1, Col 1
-            { index: 4, borderRadius: '12px', image: 1 },   // Row 1, Col 5
-            { index: 13, borderRadius: '12px', image: 2 },  // Row 3, Col 2
-            { index: 21, borderRadius: '12px', image: 3 },  // Row 4, Col 4
-            { index: 23, borderRadius: '12px', image: 4 }   // Row 4, Col 6
-        ],
-        // Sequence 2 (Figma: 250-1877)
-        [
-            { index: 1, borderRadius: '12px', image: 5 },   // Row 1, Col 2
-            { index: 5, borderRadius: '12px', image: 6 },   // Row 1, Col 6
-            { index: 10, borderRadius: '12px', image: 7 },  // Row 2, Col 5
-            { index: 12, borderRadius: '12px', image: 8 },  // Row 3, Col 1
-            { index: 21, borderRadius: '12px', image: 9 }   // Row 4, Col 4
-        ],
-        // Sequence 3 (Figma: 250-1925)
-        [
-            { index: 0, borderRadius: '12px', image: 10 },  // Row 1, Col 1
-            { index: 2, borderRadius: '12px', image: 11 },  // Row 1, Col 3
-            { index: 4, borderRadius: '12px', image: 0 },   // Row 1, Col 5
-            { index: 13, borderRadius: '12px', image: 1 },  // Row 3, Col 2
-            { index: 23, borderRadius: '12px', image: 2 }   // Row 4, Col 6
-        ]
-    ]
-};
-
-// ===================================
-// GRID INITIALIZATION
-// ===================================
-class FloatingHeaderGrid {
-    constructor(config) {
-        this.config = config;
-        this.gridContainer = document.querySelector('.grid-overlay');
-        this.cells = [];
-        this.animationIntervals = [];
-        this.currentSequenceIndex = 0;
-        
-        this.init();
-    }
-
-    init() {
-        this.createGrid();
-        this.startSequenceCycle();
-    }
-
-    createGrid() {
-        const totalCells = this.config.gridColumns * this.config.gridRows;
-        
-        // Create all grid cells (empty initially)
-        for (let i = 0; i < totalCells; i++) {
-            const cell = document.createElement('div');
-            cell.className = 'grid-cell';
-            cell.dataset.index = i;
-            
-            this.gridContainer.appendChild(cell);
-            this.cells.push(cell);
-        }
-        
-        // Show first sequence immediately
-        this.showSequence(0, true);
-    }
-
-    showSequence(sequenceIndex, isInitial = false) {
-        const sequence = this.config.sequences[sequenceIndex];
-        
-        // Get all grid indices that should be visible in this sequence
-        const targetIndices = sequence.map(card => card.index);
-        
-        // Hide all cards not in this sequence
-        this.cells.forEach((cell, index) => {
-            if (!targetIndices.includes(index)) {
-                if (!isInitial) {
-                    cell.classList.remove('card-visible');
-                    cell.classList.add('card-hidden');
-                }
-            }
-        });
-        
-        // Show cards in this sequence
-        sequence.forEach((cardConfig, i) => {
-            const cell = this.cells[cardConfig.index];
-            
-            // Clear existing content if any
-            cell.innerHTML = '';
-            
-            // Set border radius
-            cell.style.borderRadius = cardConfig.borderRadius;
-            
-            // Add image
-            const img = document.createElement('img');
-            img.src = this.config.imagePaths[cardConfig.image];
-            img.alt = `Floating image ${cardConfig.image + 1}`;
-            img.classList.add('active');
-            cell.appendChild(img);
-            
-            // Stagger the fade-in for smooth transitions
-            if (isInitial) {
-                // Initial load: show immediately with staggered animation
-                setTimeout(() => {
-                    cell.classList.add('card-visible');
-                }, i * 100);
-            } else {
-                // Transition: fade in after previous cards fade out
-                setTimeout(() => {
-                    cell.classList.remove('card-hidden');
-                    cell.classList.add('card-visible');
-                }, this.config.fadeDuration * 0.5 + (i * 100));
-            }
-        });
-    }
-
-    startSequenceCycle() {
-        // Cycle through sequences every sequenceInterval
-        const intervalId = setInterval(() => {
-            // Move to next sequence (loop back to 0 after last one)
-            this.currentSequenceIndex = (this.currentSequenceIndex + 1) % this.config.sequences.length;
-            this.showSequence(this.currentSequenceIndex);
-        }, this.config.sequenceInterval);
-        
-        this.animationIntervals.push(intervalId);
-    }
-
-    destroy() {
-        // Clean up intervals
-        this.animationIntervals.forEach(id => clearInterval(id));
-        this.animationIntervals = [];
-    }
-}
-
-// ===================================
 // MOBILE MENU TOGGLE
 // ===================================
 class MobileMenu {
@@ -252,23 +96,6 @@ class MobileMenu {
     }
 }
 
-// ===================================
-// PERFORMANCE OPTIMIZATION
-// ===================================
-// Pause animations when page is not visible
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        // Page is hidden, pause animations to save resources
-        if (window.floatingGrid) {
-            window.floatingGrid.destroy();
-        }
-    } else {
-        // Page is visible again, restart animations
-        if (window.floatingGrid) {
-            window.floatingGrid.startAnimations();
-        }
-    }
-});
 
 // ===================================
 // STICKY HEADER ON SCROLL
@@ -358,18 +185,15 @@ class TestimonialsCarousel {
 // INITIALIZE ON LOAD
 // ===================================
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize floating grid
-    window.floatingGrid = new FloatingHeaderGrid(CONFIG);
-    
     // Initialize mobile menu
     window.mobileMenu = new MobileMenu();
     
     // Initialize sticky header
     window.stickyHeader = new StickyHeader();
     
-    // Initialize testimonials carousel
+    // Initialize testimonials carousel (none exist now, but keeping for future)
     window.testimonialsCarousel = new TestimonialsCarousel();
     
-    console.log('Club Studio Header initialized');
+    console.log('LA Fitness initialized');
 });
 
