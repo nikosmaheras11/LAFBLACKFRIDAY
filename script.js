@@ -81,13 +81,14 @@ class MobileMenu {
     toggleMenu() {
         this.isOpen = !this.isOpen;
         this.nav.classList.toggle('active');
+        this.toggle.classList.toggle('active');
         
         // Animate hamburger icon
         const spans = this.toggle.querySelectorAll('span');
         if (this.isOpen) {
-            spans[0].style.transform = 'rotate(45deg) translateY(7px)';
+            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
             spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translateY(-7px)';
+            spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
         } else {
             spans[0].style.transform = 'none';
             spans[1].style.opacity = '1';
