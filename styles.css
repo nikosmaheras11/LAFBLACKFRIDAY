@@ -928,6 +928,14 @@ html {
     white-space: pre-wrap;
 }
 
+.stats-btn {
+    flex-shrink: 0;
+}
+
+.stats-btn {
+    flex-shrink: 0;
+}
+
 /* Responsive Stats Section */
 @media (max-width: 768px) {
     .stats-section {
