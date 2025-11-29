@@ -503,20 +503,24 @@ main {
         margin-left: auto;
     }
 
-    /* ===== MOBILE HERO SECTION ===== */
+    /* ===== MOBILE HERO SECTION - FIXED STACKING ===== */
     .hero-section {
         position: relative;
         min-height: 100vh;
-        height: 100vh;
+        height: auto;
         background: #fff;
+        display: flex;
+        flex-direction: column;
+        overflow: visible;
     }
     
-    /* Grid fills entire hero */
+    /* Grid container - RELATIVE positioning, fixed height */
     .hero-grid-container {
-        position: absolute;
-        inset: 0;
-        height: 100%;
-        overflow: hidden;
+        position: relative;
+        width: 100%;
+        height: 462px;
+        overflow: visible;
+        flex-shrink: 0;
     }
     
     /* 3x3 grid on mobile */
@@ -528,6 +532,7 @@ main {
         width: 100%;
         height: 100%;
         padding: 90px 16px 16px;
+        position: relative;
     }
     
     /* Hide ALL grid cells by default */
@@ -536,13 +541,16 @@ main {
     }
 
     /* Show specific cells to match Figma static layout */
-    .grid-cell[data-position="1"],   /* top-left */
-    .grid-cell[data-position="6"],   /* middle-left */
-    .grid-cell[data-position="8"],   /* middle-right */
-    .grid-cell[data-position="12"],  /* bottom-center left */
-    .grid-cell[data-position="13"]   /* bottom-right */
+    .grid-cell[data-position="1"],
+    .grid-cell[data-position="6"],
+    .grid-cell[data-position="8"],
+    .grid-cell[data-position="12"],
+    .grid-cell[data-position="5"]
     {
         display: flex;
+        background: #efefef;
+        border-radius: 8.4px;
+        overflow: hidden;
     }
 
     /* Place them on a 3x3 grid explicitly */
@@ -550,9 +558,9 @@ main {
     .grid-cell[data-position="6"]  { grid-column: 1; grid-row: 2; }
     .grid-cell[data-position="8"]  { grid-column: 3; grid-row: 2; }
     .grid-cell[data-position="12"] { grid-column: 2; grid-row: 3; }
-    .grid-cell[data-position="13"] { grid-column: 3; grid-row: 3; }
+    .grid-cell[data-position="5"]  { grid-column: 3; grid-row: 1; }
 
-    /* Static image styling - no motion */
+    /* Static image styling - no animation */
     .grid-img {
         border-radius: 8.4px;
         width: 100%;
@@ -565,10 +573,15 @@ main {
         animation: none;
     }
     
+    /* Navbar - stays absolute */
     .site-header {
-        top: 16px;
+        position: absolute;
+        top: 22px;
+        left: 50%;
+        transform: translateX(-50%);
         width: calc(100% - 32px);
-        max-width: 90%;
+        max-width: 479px;
+        z-index: 1000;
     }
     
     .site-header.scrolled {
@@ -577,7 +590,7 @@ main {
     
     .header-container {
         gap: 16px;
-        height: 64px;
+        height: 72px;
     }
     
     .header-cta {
@@ -625,22 +638,28 @@ main {
         white-space: nowrap;
     }
     
-    /* Hero content - GLASS MORPHISM overlay */
+    /* Hero content - RELATIVE positioning, flows after grid */
     .hero-content {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
+        position: relative;
         z-index: 10;
         background: rgba(255, 255, 255, 0.8);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
         padding: 48px 32px 56px;
-        transform: none;
+        min-height: 371px;
+        width: 100%;
+        flex-shrink: 0;
+        /* Remove absolute positioning */
         top: auto;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        transform: none;
     }
     
     .text-wrap {
+        display: flex;
+        flex-direction: column;
         align-items: flex-start;
         gap: 16px;
         width: 100%;
@@ -649,34 +668,44 @@ main {
     .hero-eyebrow {
         text-align: left;
         font-size: 18px;
+        font-weight: 600;
         letter-spacing: 1.44px;
+        text-transform: uppercase;
+        color: rgba(20, 20, 43, 0.6);
+        line-height: 0.95;
         width: 100%;
     }
     
     .hero-heading {
         text-align: left;
         font-size: 56px;
+        font-weight: 600;
         line-height: 1;
         letter-spacing: -0.56px;
         max-width: 100%;
-        height: 175px;
+        height: auto;
+        margin: 0;
     }
     
     .hero-cta {
+        display: flex;
         align-items: flex-start;
         gap: 12px;
         flex-direction: column;
     }
     
-    /* CTA button - no wrapping */
+    /* CTA button */
     .black-friday-btn {
         font-size: 20px;
         padding: 6.142px 15.355px;
         border-radius: 9.213px;
         border: 0.768px solid #ffbc15;
+        background: #ffbc15;
         flex-wrap: nowrap;
         gap: 6.142px;
         white-space: nowrap;
+        display: flex;
+        align-items: center;
     }
     
     .btn-label {
