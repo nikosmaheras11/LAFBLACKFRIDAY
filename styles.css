@@ -12,13 +12,6 @@ body {
     overflow-x: hidden;
 }
 
-@media (max-width: 768px) {
-    body {
-        display: flex;
-        flex-direction: column;
-    }
-}
-
 main {
     position: relative;
 }
