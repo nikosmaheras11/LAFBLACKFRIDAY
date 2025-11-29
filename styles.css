@@ -532,21 +532,27 @@ main {
     
     /* Hide ALL grid cells by default */
     .grid-cell {
-        visibility: hidden;
-    }
-    
-    .grid-cell-center {
         display: none;
     }
-    
-    /* Only show 3 cells per Figma: top-left, middle-right, bottom-center */
-    .grid-cell[data-position="1"],
-    .grid-cell[data-position="5"],
-    .grid-cell[data-position="8"] {
-        visibility: visible;
+
+    /* Show specific cells to match Figma static layout */
+    .grid-cell[data-position="1"],   /* top-left */
+    .grid-cell[data-position="6"],   /* middle-left */
+    .grid-cell[data-position="8"],   /* middle-right */
+    .grid-cell[data-position="12"],  /* bottom-center left */
+    .grid-cell[data-position="13"]   /* bottom-right */
+    {
+        display: flex;
     }
-    
-    /* Image styling */
+
+    /* Place them on a 3x3 grid explicitly */
+    .grid-cell[data-position="1"]  { grid-column: 1; grid-row: 1; }
+    .grid-cell[data-position="6"]  { grid-column: 1; grid-row: 2; }
+    .grid-cell[data-position="8"]  { grid-column: 3; grid-row: 2; }
+    .grid-cell[data-position="12"] { grid-column: 2; grid-row: 3; }
+    .grid-cell[data-position="13"] { grid-column: 3; grid-row: 3; }
+
+    /* Static image styling - no motion */
     .grid-img {
         border-radius: 8.4px;
         width: 100%;
@@ -554,12 +560,10 @@ main {
         max-width: none;
         aspect-ratio: auto;
         object-fit: cover;
+        opacity: 1;
+        transform: none;
+        animation: none;
     }
-    
-    /* Animation only for visible cells */
-    .grid-cell[data-position="1"] .grid-img { animation-delay: 0s; }
-    .grid-cell[data-position="5"] .grid-img { animation-delay: 8s; }
-    .grid-cell[data-position="8"] .grid-img { animation-delay: 16s; }
     
     .site-header {
         top: 16px;
@@ -628,10 +632,10 @@ main {
         left: 0;
         right: 0;
         z-index: 10;
-        background: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.8);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-        padding: 56px 32px;
+        padding: 48px 32px 56px;
         transform: none;
         top: auto;
     }
