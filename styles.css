@@ -96,6 +96,11 @@ main {
     visibility: hidden;
 }
 
+/* Increase size of position 6 image (hero-grid-10) */
+.grid-cell[data-position="6"] .grid-img {
+    max-width: 25rem;
+}
+
 /* Desktop animation delays - only animate edge cells, skip center (7, 8, 9) */
 /* Grid visual:
    [1]  [2]  [3]  [4]  [5]     ← Row 1 (all animate)
