@@ -362,15 +362,18 @@ main {
         left: 16px;
         right: 16px;
         width: auto;
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(20, 20, 43, 0.02);
+        background: white;
+        backdrop-filter: blur(16px);
+        border: 2px solid rgba(20, 20, 43, 0.05);
         border-radius: 12px;
         transform: translateY(-150%);
         opacity: 0;
         transition: all 0.3s ease;
         pointer-events: none;
         max-width: calc(100% - 32px);
+        padding: 20px 24px;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
     }
     
     .header-nav.active {
@@ -381,47 +384,77 @@ main {
     
     .nav-menu {
         flex-direction: column;
-        gap: 0;
-        padding: 8px 0;
+        gap: 16px;
+        padding: 0;
     }
     
     .nav-item {
         width: 100%;
-        text-align: center;
-        padding: 12px 16px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        text-align: left;
+        padding: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        padding-bottom: 16px;
     }
     
     .nav-item:last-child {
         border-bottom: none;
+        padding-bottom: 0;
+    }
+    
+    .nav-item > a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 20px;
+        font-weight: 600;
+        color: #14142b;
+        width: 100%;
     }
     
     /* Mobile Dropdown Styles */
+    .nav-item.dropdown > a::after {
+        content: '→';
+        font-size: 24px;
+        transition: transform 0.3s ease;
+    }
+    
     .nav-item.dropdown .chevron-icon {
         display: none;
     }
     
     .dropdown-menu {
-        position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        padding: 16px 0 0 0;
+        margin: 0;
         opacity: 1;
         visibility: visible;
         transform: none;
         box-shadow: none;
         border: none;
-        border-top: 1px solid rgba(0, 0, 0, 0.05);
         border-radius: 0;
-        min-width: 100%;
-        padding: 0;
-        margin-top: 8px;
+        position: static;
+        background: transparent;
     }
     
     .dropdown-menu li {
-        padding: 8px 16px;
+        padding: 0;
     }
     
     .dropdown-menu li a {
-        font-size: 14px;
-        padding: 8px 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        color: rgba(20, 20, 43, 0.7);
+        padding: 0;
+    }
+    
+    .dropdown-menu li a::after {
+        content: '→';
+        font-size: 19.2px;
     }
 
     .grid-overlay {
