@@ -69,6 +69,13 @@ main {
     pointer-events: none;
 }
 
+/* Hide images in center cells 7-9 to avoid interfering with hero text */
+.grid-cell:nth-child(7) .grid-img,
+.grid-cell:nth-child(8) .grid-img,
+.grid-cell:nth-child(9) .grid-img {
+    display: none;
+}
+
 /* Timeline Order (non-adjacent sequence) */
 .grid-cell:nth-child(1)  .grid-img { animation-delay: 0s; }
 .grid-cell:nth-child(7)  .grid-img { animation-delay: 1.5s; }
@@ -1219,7 +1226,6 @@ html {
 /* Responsive Reality Section */
 @media (max-width: 768px) {
     .reality-section {
-        order: 999; /* Move to end on mobile */
         padding: 48px 24px;
     }
     
@@ -1236,7 +1242,7 @@ html {
     }
     
     .reality-title {
-        font-size: 48px;
+        font-size: 36px;
     }
     
     .reality-subtitle {
@@ -1246,6 +1252,20 @@ html {
     .reality-row {
         flex-direction: column;
         gap: 48px;
+    }
+    
+    /* Swap order of items in second row on mobile */
+    .reality-row:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .reality-row:nth-child(2) .reality-item:first-child {
+        order: 2;
+    }
+    
+    .reality-row:nth-child(2) .reality-item:last-child {
+        order: 1;
     }
     
     .item-heading {
