@@ -763,61 +763,64 @@ main {
 }
 
 /* ===================================
-   HERO CONTENT STYLES
+   HERO CONTENT STYLES (DESKTOP)
    =================================== */
-.hero-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
+@media (min-width: 769px) {
+    .hero-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .text-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .hero-eyebrow {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 1.44px;
+        text-transform: uppercase;
+        color: rgba(20, 20, 43, 0.6);
+        text-align: center;
+        line-height: 0.95;
+    }
+
+    .hero-heading {
+        font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: 56px;
+        font-weight: 600;
+        line-height: 0.95;
+        letter-spacing: -0.56px;
+        text-align: center;
+        max-width: 560px;
+        margin: 0;
+    }
+
+    .hero-cta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
 }
 
-.text-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-}
-
-.hero-eyebrow {
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 1.44px;
-    text-transform: uppercase;
-    color: rgba(20, 20, 43, 0.6);
-    text-align: center;
-    line-height: 0.95;
-}
-
-.hero-heading {
-    font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 56px;
-    font-weight: 600;
-    line-height: 0.95;
-    letter-spacing: -0.56px;
-    text-align: center;
-    max-width: 560px;
-    margin: 0;
-}
-
+/* Shared styles (both mobile and desktop) */
 .hero-heading .text-gray {
     color: rgba(20, 20, 43, 0.6);
 }
 
 .hero-heading .text-dark {
     color: #14142b;
-}
-
-.hero-cta {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
 }
 
 .black-friday-btn {
@@ -832,6 +835,7 @@ main {
     cursor: pointer;
     transition: all 0.3s ease;
     color: #14142b;
+    text-decoration: none;
 }
 
 .black-friday-btn:hover {
