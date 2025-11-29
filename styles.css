@@ -70,6 +70,12 @@ main {
     animation: gridFade 22.5s linear infinite;
 }
 
+/* Hidden grid cells (for center area behind hero text) */
+.grid-cell-hidden {
+    visibility: hidden;
+    pointer-events: none;
+}
+
 /* Timeline Order (non-adjacent sequence) */
 .grid-cell:nth-child(1)  .grid-img { animation-delay: 0s; }
 .grid-cell:nth-child(7)  .grid-img { animation-delay: 1.5s; }
