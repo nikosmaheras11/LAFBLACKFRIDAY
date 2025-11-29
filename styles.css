@@ -68,7 +68,7 @@ main {
     max-width: 20rem;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 8.4px;
     opacity: 0;
     transform: scale(1.02);
     animation: heroGridFloat 30s ease-in-out infinite;
@@ -489,33 +489,63 @@ main {
         margin-left: auto;
     }
 
-    /* Mobile: 3 columns x 5 rows grid */
-    .hero-grid {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(5, 1fr);
+    /* ===== MOBILE HERO SECTION ===== */
+    .hero-section {
+        position: relative;
+        min-height: 100vh;
+        height: 100vh;
+        background: #fff;
     }
     
-    /* Show: Row 1 (cells 1-3) - below nav */
-    /* Hide: Rows 2, 3, 4 (cells 4-12) - behind hero text */
-    /* Show: Row 5 (cells 13-15) - below hero copy */
+    /* Grid fills entire hero */
+    .hero-grid-container {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        overflow: hidden;
+    }
     
-    .grid-cell:nth-child(n+4):nth-child(-n+12) {
+    /* 3x3 grid on mobile */
+    .hero-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 7px;
+        width: 100%;
+        height: 100%;
+        padding: 90px 16px 16px;
+    }
+    
+    /* Hide ALL grid cells by default */
+    .grid-cell {
         visibility: hidden;
     }
     
-    /* Ensure rounded corners */
-    .grid-img {
-        border-radius: 12px;
-        max-width: 85%;
+    .grid-cell-center {
+        display: none;
     }
     
-    /* Only animate visible cells */
-    .grid-cell:nth-child(1) .grid-img { animation-delay: 0s; }
-    .grid-cell:nth-child(2) .grid-img { animation-delay: 3s; }
-    .grid-cell:nth-child(3) .grid-img { animation-delay: 6s; }
-    .grid-cell:nth-child(13) .grid-img { animation-delay: 9s; }
-    .grid-cell:nth-child(14) .grid-img { animation-delay: 12s; }
-    .grid-cell:nth-child(15) .grid-img { animation-delay: 15s; }
+    /* Only show 3 cells per Figma: top-left, middle-right, bottom-center */
+    .grid-cell[data-position="1"],
+    .grid-cell[data-position="5"],
+    .grid-cell[data-position="8"] {
+        visibility: visible;
+    }
+    
+    /* Image styling */
+    .grid-img {
+        border-radius: 8.4px;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        aspect-ratio: auto;
+        object-fit: cover;
+    }
+    
+    /* Animation only for visible cells */
+    .grid-cell[data-position="1"] .grid-img { animation-delay: 0s; }
+    .grid-cell[data-position="5"] .grid-img { animation-delay: 8s; }
+    .grid-cell[data-position="8"] .grid-img { animation-delay: 16s; }
     
     .site-header {
         top: 16px;
@@ -561,43 +591,6 @@ main {
         box-shadow: 0 4px 12px rgba(255, 188, 21, 0.3);
     }
     
-    .hero-heading {
-        font-size: 36px;
-        max-width: 90%;
-    }
-    
-    .hero-eyebrow {
-        font-size: 14px;
-    }
-    
-    .black-friday-btn {
-        font-size: 14px;
-        padding: 8px 12px;
-        flex-wrap: nowrap;
-        justify-content: center;
-        gap: 6px;
-        width: auto;
-        max-width: 100%;
-    }
-    
-    .btn-label {
-        font-size: 13px;
-    }
-    
-    .btn-timer {
-        font-size: 13px;
-    }
-    
-    .divider {
-        height: 16px;
-    }
-    
-    .arrow-icon {
-        width: 18px;
-        height: 18px;
-        flex-shrink: 0;
-    }
-    
     .promo-btn {
         font-size: 14px;
         padding: 8px 12px;
@@ -614,60 +607,75 @@ main {
         white-space: nowrap;
     }
     
-    .expiration-text {
-        font-size: 14px;
-    }
-    
-    /* Mobile: Hero section layout */
-    .hero-section {
-        height: auto;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .hero-grid-container {
-        height: 55vh;
-        min-height: 350px;
-        position: relative;
-        flex-shrink: 0;
-    }
-    
-    /* Mobile: Content flows below images */
+    /* Hero content - GLASS MORPHISM overlay */
     .hero-content {
-        position: relative;
-        top: auto;
-        left: auto;
-        bottom: auto;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        padding: 56px 32px;
         transform: none;
-        align-items: flex-start;
-        width: 100%;
-        background: white;
-        padding: 40px 24px 60px;
+        top: auto;
     }
     
     .text-wrap {
         align-items: flex-start;
+        gap: 16px;
         width: 100%;
     }
     
-    .hero-eyebrow,
-    .hero-heading {
+    .hero-eyebrow {
         text-align: left;
+        font-size: 18px;
+        letter-spacing: 1.44px;
     }
     
     .hero-heading {
-        font-size: 40px;
+        text-align: left;
+        font-size: 48px;
+        line-height: 1;
+        letter-spacing: -0.48px;
         max-width: 100%;
     }
     
     .hero-cta {
         align-items: flex-start;
+        gap: 12px;
+    }
+    
+    /* CTA button - no wrapping */
+    .black-friday-btn {
+        font-size: 16px;
+        padding: 6px 14px;
+        border-radius: 9px;
+        flex-wrap: nowrap;
+        gap: 6px;
+        white-space: nowrap;
+    }
+    
+    .btn-label,
+    .btn-timer {
+        font-size: 16px;
+    }
+    
+    .divider {
+        height: 16px;
+    }
+    
+    .arrow-icon {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
     }
     
     .expiration-text {
-        color: #ffbc15;
-        text-transform: uppercase;
+        color: red;
+        font-size: 18px;
+        text-transform: lowercase;
     }
 }
 
@@ -1461,6 +1469,25 @@ html {
     margin-top: 8px;
 }
 
+/* Reality CTA Button */
+.reality-cta-btn {
+    margin-top: 31px;
+    width: 421.328px;
+    height: 46px;
+    text-decoration: none;
+}
+
+.reality-cta-btn .btn-label {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.reality-cta-btn .arrow-icon {
+    width: 24px;
+    height: 24px;
+}
+
 /* Responsive Reality Section */
 @media (max-width: 768px) {
     .reality-section {
@@ -1512,6 +1539,12 @@ html {
     
     .item-text {
         font-size: 18px;
+    }
+    
+    .reality-cta-btn {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
     }
 }
 
