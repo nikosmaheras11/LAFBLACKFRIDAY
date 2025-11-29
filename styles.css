@@ -321,6 +321,11 @@ main {
     background: rgba(20, 20, 43, 0.05);
 }
 
+/* Hide mobile CTA item on desktop */
+.mobile-cta-item {
+    display: none;
+}
+
 /* Mobile Menu Toggle */
 .mobile-menu-toggle {
     display: none;
@@ -357,10 +362,6 @@ main {
         display: flex;
     }
 
-    .mobile-nav-header {
-        display: none;
-    }
-    
     .header-nav {
         position: fixed;
         top: 80px;
@@ -382,33 +383,6 @@ main {
         overflow-y: auto;
         overflow-x: hidden;
         box-sizing: border-box;
-    }
-    
-    .mobile-nav-header {
-        display: block;
-        margin-bottom: 16px;
-        padding-bottom: 16px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    }
-    
-    .mobile-join-btn {
-        display: block;
-        width: 100%;
-        padding: 12px 20px;
-        background: #ffbc15;
-        border: 1px solid #ffbc15;
-        border-radius: 12px;
-        text-decoration: none;
-        color: #14142b;
-        font-size: 18px;
-        font-weight: 600;
-        text-align: center;
-        transition: all 0.3s ease;
-    }
-    
-    .mobile-join-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(255, 188, 21, 0.3);
     }
     
     .header-nav.active {
@@ -524,6 +498,31 @@ main {
     
     .header-cta {
         display: none;
+    }
+    
+    /* Show Join CTA in mobile nav */
+    .mobile-cta-item {
+        display: block;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        padding-top: 12px;
+        margin-top: 4px;
+    }
+    
+    .mobile-cta-item .join-btn {
+        display: block;
+        width: 100%;
+        padding: 12px 20px;
+        background: #ffbc15;
+        border: 1px solid #ffbc15;
+        color: #14142b;
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    .mobile-cta-item .join-btn:hover {
+        background: #ffbc15;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 188, 21, 0.3);
     }
     
     .hero-heading {
