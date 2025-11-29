@@ -145,7 +145,7 @@ main {
     justify-content: space-between;
     align-items: center;
     height: 72px;
-    gap: 120px;
+    gap: 32px;
 }
 
 /* Logo Styles */
@@ -175,14 +175,22 @@ main {
 .header-nav {
     flex: 1;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 40px;
+    gap: 32px;
     align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
 }
 
 .nav-item a {
@@ -192,6 +200,9 @@ main {
     font-weight: 600;
     position: relative;
     transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .nav-item a::after {
@@ -211,6 +222,75 @@ main {
 
 .nav-item a:hover::after {
     width: 100%;
+}
+
+/* Chevron Icon */
+.chevron-icon {
+    display: inline-block;
+    width: 19.2px;
+    height: 19.2px;
+    margin-left: 4px;
+    vertical-align: middle;
+    stroke: rgba(20, 20, 43, 0.7);
+    transition: transform 0.3s ease;
+}
+
+/* Dropdown Menu */
+.nav-item.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 16px);
+    left: 0;
+    background: white;
+    border: 2px solid rgba(20, 20, 43, 0.02);
+    border-radius: 12px;
+    padding: 8px 0;
+    min-width: 200px;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.nav-item.dropdown:hover .chevron-icon {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu li {
+    padding: 0;
+    border: none;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 12px 20px;
+    color: rgba(20, 20, 43, 0.7);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.dropdown-menu li a::after {
+    display: none;
+}
+
+.dropdown-menu li a:hover {
+    background: rgba(20, 20, 43, 0.05);
+    color: rgba(20, 20, 43, 1);
 }
 
 /* Header CTA */
@@ -307,6 +387,34 @@ main {
     
     .nav-item:last-child {
         border-bottom: none;
+    }
+    
+    /* Mobile Dropdown Styles */
+    .nav-item.dropdown .chevron-icon {
+        display: none;
+    }
+    
+    .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        border-radius: 0;
+        min-width: 100%;
+        padding: 0;
+        margin-top: 8px;
+    }
+    
+    .dropdown-menu li {
+        padding: 8px 16px;
+    }
+    
+    .dropdown-menu li a {
+        font-size: 14px;
+        padding: 8px 0;
     }
 
     .grid-overlay {
@@ -483,6 +591,22 @@ main {
     text-transform: lowercase;
     letter-spacing: -0.18px;
     line-height: 1.1;
+}
+
+/* Expired Countdown State */
+.countdown-expired .btn-timer {
+    color: #14142b;
+}
+
+.countdown-expired .black-friday-btn {
+    background: #ccc;
+    border-color: #ccc;
+    cursor: not-allowed;
+}
+
+.countdown-expired .black-friday-btn:hover {
+    transform: none;
+    box-shadow: none;
 }
 
 /* Smooth scroll behavior */

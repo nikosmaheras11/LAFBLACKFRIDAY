@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Club Studio Header - Animated</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600&family=Permanent+Marker&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -29,15 +32,30 @@
             <!-- Navigation -->
             <nav class="header-nav">
                 <ul class="nav-menu">
-                    <li class="nav-item"><a href="#memberships">Memberships</a></li>
-                    <li class="nav-item"><a href="#locations">Locations</a></li>
-                    <li class="nav-item"><a href="#classes">Classes</a></li>
-                    <li class="nav-item"><a href="#more">More</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="https://welcome.lafitness.com/amenities/">
+                            Amenities
+                            <svg class="chevron-icon" width="19.2" height="19.2" viewBox="0 0 24 24" fill="none">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://welcome.lafitness.com/functional-training/">Functional Training</a></li>
+                            <li><a href="https://welcome.lafitness.com/equipment/">Equipment</a></li>
+                            <li><a href="https://welcome.lafitness.com/pool-and-spa/">Pool and Spa</a></li>
+                            <li><a href="https://welcome.lafitness.com/third-party-services/">Third-Party Services</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="https://welcome.lafitness.com/classes/">Classes</a></li>
+                    <li class="nav-item"><a href="https://welcome.lafitness.com/personal-training/">Personal Training</a></li>
+                    <li class="nav-item"><a href="#leagues">Leagues & Courts</a></li>
+                    <li class="nav-item"><a href="https://welcome.lafitness.com/vip-rewards/">VIP Rewards</a></li>
+                    <li class="nav-item"><a href="https://welcome.lafitness.com/mobile/">Mobile</a></li>
                 </ul>
             </nav>
 
             <div class="header-cta">
-                <a href="#join" class="join-btn">Join</a>
+                <a href="https://lafitness.com/Pages/MembershipSignUpSearch.aspx" class="join-btn">Join</a>
             </div>
 
             <!-- Mobile Menu Toggle -->
@@ -60,7 +78,7 @@
                     <button class="black-friday-btn">
                         <span class="btn-label">Black Friday</span>
                         <span class="divider"></span>
-                        <span class="btn-timer">Expires in <strong>16:12:37</strong></span>
+                        <span class="btn-timer">Expires in <strong id="countdown-timer">00:00:00</strong></span>
                         <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -349,6 +367,7 @@
                     </div>
                     <p class="cta-pricing-disclaimer">The total due today, plus the first annual fee due 14 days after enrolling, is $138.98 (plus tax where applicable) Annual fee will be billed yearly thereafter.</p>
                 </div>
+            </div>
         </div>
     </section>
 

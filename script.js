@@ -1,11 +1,54 @@
 // ===================================
+// COUNTDOWN TIMER - Expires Dec 2nd 2025 Midnight PST
+// ===================================
+(function() {
+    const EXPIRATION_DATE = new Date('2025-12-02T00:00:00-08:00');
+    
+    const timerElement = document.getElementById('countdown-timer');
+    const heroCtaContainer = document.querySelector('.hero-cta');
+    
+    function updateCountdown() {
+        const now = new Date();
+        const diff = EXPIRATION_DATE - now;
+        
+        if (diff <= 0) {
+            timerElement.textContent = 'EXPIRED';
+            if (heroCtaContainer) {
+                heroCtaContainer.classList.add('countdown-expired');
+            }
+            return false;
+        }
+        
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        const pad = (n) => n.toString().padStart(2, '0');
+        
+        if (hours >= 24) {
+            const days = Math.floor(hours / 24);
+            const remainingHours = hours % 24;
+            timerElement.textContent = `${days}d ${pad(remainingHours)}:${pad(minutes)}:${pad(seconds)}`;
+        } else {
+            timerElement.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+        }
+        
+        return true;
+    }
+    
+    if (updateCountdown()) {
+        setInterval(updateCountdown, 1000);
+    }
+})();
+
+// ===================================
 // CONFIGURATION
 // ===================================
 const CONFIG = {
     gridColumns: 6,
     gridRows: 4,
-    rotationInterval: 3000, // milliseconds between card changes
-    fadeDuration: 800, // milliseconds for fade transition
+    sequenceInterval: 6000, // milliseconds before switching to next sequence
+    fadeDuration: 1200, // milliseconds for fade transition
     imagePaths: [
         // Actual Figma images
         'assets/images/image1.png',
@@ -21,33 +64,33 @@ const CONFIG = {
         'assets/images/image11.png',
         'assets/images/image12.png'
     ],
-    // All possible grid positions - cards will never be adjacent
-    // activeGridCells will be dynamically chosen to ensure non-adjacency
-    allGridPositions: [
-        { index: 0, borderRadius: '12px', image: 0 },    // [1,1]
-        { index: 1, borderRadius: '12px', image: 1 },    // [1,2]
-        { index: 2, borderRadius: '12px', image: 2 },    // [1,3]
-        { index: 3, borderRadius: '12px', image: 3 },    // [1,4]
-        { index: 4, borderRadius: '12px', image: 4 },    // [1,5]
-        { index: 5, borderRadius: '12px', image: 5 },    // [1,6]
-        { index: 6, borderRadius: '12px', image: 6 },    // [2,1]
-        { index: 7, borderRadius: '12px', image: 7 },    // [2,2]
-        { index: 8, borderRadius: '12px', image: 8 },    // [2,3]
-        { index: 9, borderRadius: '12px', image: 9 },    // [2,4]
-        { index: 10, borderRadius: '12px', image: 10 },  // [2,5]
-        { index: 11, borderRadius: '12px', image: 11 },  // [2,6]
-        { index: 12, borderRadius: '12px', image: 0 },   // [3,1]
-        { index: 13, borderRadius: '12px', image: 1 },   // [3,2]
-        { index: 14, borderRadius: '12px', image: 2 },   // [3,3]
-        { index: 15, borderRadius: '12px', image: 3 },   // [3,4]
-        { index: 16, borderRadius: '12px', image: 4 },   // [3,5]
-        { index: 17, borderRadius: '12px', image: 5 },   // [3,6]
-        { index: 18, borderRadius: '12px', image: 6 },   // [4,1]
-        { index: 19, borderRadius: '12px', image: 7 },   // [4,2]
-        { index: 20, borderRadius: '12px', image: 8 },   // [4,3]
-        { index: 21, borderRadius: '12px', image: 9 },   // [4,4]
-        { index: 22, borderRadius: '12px', image: 10 },  // [4,5]
-        { index: 23, borderRadius: '12px', image: 11 }   // [4,6]
+    // Three predefined sequences from Figma designs
+    // Each sequence shows 5 images in specific grid positions
+    sequences: [
+        // Sequence 1 (Figma: 140-7458)
+        [
+            { index: 0, borderRadius: '12px', image: 0 },   // Row 1, Col 1
+            { index: 4, borderRadius: '12px', image: 1 },   // Row 1, Col 5
+            { index: 13, borderRadius: '12px', image: 2 },  // Row 3, Col 2
+            { index: 21, borderRadius: '12px', image: 3 },  // Row 4, Col 4
+            { index: 23, borderRadius: '12px', image: 4 }   // Row 4, Col 6
+        ],
+        // Sequence 2 (Figma: 250-1877)
+        [
+            { index: 1, borderRadius: '12px', image: 5 },   // Row 1, Col 2
+            { index: 5, borderRadius: '12px', image: 6 },   // Row 1, Col 6
+            { index: 10, borderRadius: '12px', image: 7 },  // Row 2, Col 5
+            { index: 12, borderRadius: '12px', image: 8 },  // Row 3, Col 1
+            { index: 21, borderRadius: '12px', image: 9 }   // Row 4, Col 4
+        ],
+        // Sequence 3 (Figma: 250-1925)
+        [
+            { index: 0, borderRadius: '12px', image: 10 },  // Row 1, Col 1
+            { index: 2, borderRadius: '12px', image: 11 },  // Row 1, Col 3
+            { index: 4, borderRadius: '12px', image: 0 },   // Row 1, Col 5
+            { index: 13, borderRadius: '12px', image: 1 },  // Row 3, Col 2
+            { index: 23, borderRadius: '12px', image: 2 }   // Row 4, Col 6
+        ]
     ]
 };
 
@@ -60,180 +103,89 @@ class FloatingHeaderGrid {
         this.gridContainer = document.querySelector('.grid-overlay');
         this.cells = [];
         this.animationIntervals = [];
-        this.config.activeGridCells = [];
+        this.currentSequenceIndex = 0;
         
         this.init();
     }
 
     init() {
-        // Initialize with 5 non-adjacent cards
-        this.config.activeGridCells = this.selectNonAdjacentCards(5);
         this.createGrid();
-        this.startAnimations();
-    }
-    
-    // Check if two grid indices are adjacent (horizontally, vertically, or diagonally)
-    areAdjacent(index1, index2) {
-        const row1 = Math.floor(index1 / this.config.gridColumns);
-        const col1 = index1 % this.config.gridColumns;
-        const row2 = Math.floor(index2 / this.config.gridColumns);
-        const col2 = index2 % this.config.gridColumns;
-        
-        const rowDiff = Math.abs(row1 - row2);
-        const colDiff = Math.abs(col1 - col2);
-        
-        // Adjacent if within 1 cell in any direction (including diagonal)
-        return rowDiff <= 1 && colDiff <= 1 && (rowDiff + colDiff) > 0;
-    }
-    
-    // Check if a grid position is in the hero text exclusion zone (center area)
-    isInExclusionZone(index) {
-        const row = Math.floor(index / this.config.gridColumns);
-        const col = index % this.config.gridColumns;
-        
-        // Exclude center 4 cells (columns 2-3, rows 2-3) where hero text appears
-        // This is roughly indices 8,9,10,14,15,16 in a 6x4 grid
-        const exclusionIndices = [8, 9, 14, 15]; // Center-center cells
-        
-        return exclusionIndices.includes(index);
-    }
-    
-    // Select N non-adjacent cards from allGridPositions
-    selectNonAdjacentCards(count) {
-        const selected = [];
-        const available = [...this.config.allGridPositions].filter(
-            pos => !this.isInExclusionZone(pos.index)
-        );
-        
-        // Shuffle available positions for randomness
-        for (let i = available.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [available[i], available[j]] = [available[j], available[i]];
-        }
-        
-        for (const position of available) {
-            if (selected.length >= count) break;
-            
-            // Check if this position is adjacent to any selected positions
-            const isAdjacentToAny = selected.some(s => 
-                this.areAdjacent(position.index, s.index)
-            );
-            
-            if (!isAdjacentToAny) {
-                selected.push(position);
-            }
-        }
-        
-        return selected;
+        this.startSequenceCycle();
     }
 
     createGrid() {
         const totalCells = this.config.gridColumns * this.config.gridRows;
         
+        // Create all grid cells (empty initially)
         for (let i = 0; i < totalCells; i++) {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.dataset.index = i;
             
-            // Find if this cell has custom styling
-            const cellConfig = this.config.activeGridCells.find(c => c.index === i);
-            
-            if (cellConfig) {
-                cell.style.borderRadius = cellConfig.borderRadius;
-                this.addImagesToCell(cell, cellConfig);
-            }
-            
             this.gridContainer.appendChild(cell);
             this.cells.push(cell);
         }
+        
+        // Show first sequence immediately
+        this.showSequence(0, true);
     }
 
-    addImagesToCell(cell, cellConfig) {
-        // Add single image for this card
-        const img = document.createElement('img');
-        img.src = this.config.imagePaths[cellConfig.image];
-        img.alt = `Floating image ${cellConfig.image + 1}`;
-        img.classList.add('active');
-        cell.appendChild(img);
-    }
-
-    startAnimations() {
-        // Only show 5 cards at a time - ONE card cycles at a time
-        const maxVisibleCards = 5;
-        let currentVisibleIndexes = [];
+    showSequence(sequenceIndex, isInitial = false) {
+        const sequence = this.config.sequences[sequenceIndex];
         
-        // Initialize first 5 cards as visible
-        for (let i = 0; i < Math.min(maxVisibleCards, this.config.activeGridCells.length); i++) {
-            const cellConfig = this.config.activeGridCells[i];
-            const cell = this.cells[cellConfig.index];
-            cell.classList.add('card-visible');
-            currentVisibleIndexes.push(i);
-        }
+        // Get all grid indices that should be visible in this sequence
+        const targetIndices = sequence.map(card => card.index);
         
-        // Cycle one card at a time every 3 seconds
-        const intervalId = setInterval(() => {
-            // Pick a random visible card to remove
-            const indexToRemove = Math.floor(Math.random() * currentVisibleIndexes.length);
-            const cellIndexToHide = currentVisibleIndexes[indexToRemove];
-            const cellToHide = this.cells[this.config.activeGridCells[cellIndexToHide].index];
-            
-            // Get current visible grid indices
-            const currentVisibleGridIndices = currentVisibleIndexes.map(i => 
-                this.config.activeGridCells[i].index
-            );
-            
-            // Find all available positions that aren't currently visible
-            const availablePositions = this.config.allGridPositions.filter(pos => {
-                // Not currently visible
-                if (currentVisibleGridIndices.includes(pos.index)) return false;
-                
-                // Not in exclusion zone (hero text area)
-                if (this.isInExclusionZone(pos.index)) return false;
-                
-                // Not adjacent to any currently visible card (except the one being removed)
-                const otherVisible = currentVisibleGridIndices.filter(
-                    idx => idx !== this.config.activeGridCells[cellIndexToHide].index
-                );
-                
-                return !otherVisible.some(visIdx => this.areAdjacent(pos.index, visIdx));
-            });
-            
-            if (availablePositions.length > 0) {
-                // Pick random non-adjacent position
-                const newPosition = availablePositions[
-                    Math.floor(Math.random() * availablePositions.length)
-                ];
-                
-                // Create new config for this position
-                const newCellConfig = {
-                    ...newPosition,
-                    image: Math.floor(Math.random() * this.config.imagePaths.length)
-                };
-                
-                // Add image to the cell if it doesn't have one
-                const cellToShow = this.cells[newPosition.index];
-                if (!cellToShow.querySelector('img')) {
-                    cellToShow.style.borderRadius = newCellConfig.borderRadius;
-                    this.addImagesToCell(cellToShow, newCellConfig);
+        // Hide all cards not in this sequence
+        this.cells.forEach((cell, index) => {
+            if (!targetIndices.includes(index)) {
+                if (!isInitial) {
+                    cell.classList.remove('card-visible');
+                    cell.classList.add('card-hidden');
                 }
-                
-                // Fade out old card
-                cellToHide.classList.remove('card-visible');
-                cellToHide.classList.add('card-hidden');
-                
-                // Update config
-                this.config.activeGridCells[cellIndexToHide] = newCellConfig;
-                
-                // Fade in new card after delay
-                setTimeout(() => {
-                    cellToShow.classList.remove('card-hidden');
-                    cellToShow.classList.add('card-visible');
-                    
-                    // Update visible indexes array
-                    currentVisibleIndexes[indexToRemove] = cellIndexToHide;
-                }, 400); // Half of fade duration for overlap
             }
-        }, this.config.rotationInterval);
+        });
+        
+        // Show cards in this sequence
+        sequence.forEach((cardConfig, i) => {
+            const cell = this.cells[cardConfig.index];
+            
+            // Clear existing content if any
+            cell.innerHTML = '';
+            
+            // Set border radius
+            cell.style.borderRadius = cardConfig.borderRadius;
+            
+            // Add image
+            const img = document.createElement('img');
+            img.src = this.config.imagePaths[cardConfig.image];
+            img.alt = `Floating image ${cardConfig.image + 1}`;
+            img.classList.add('active');
+            cell.appendChild(img);
+            
+            // Stagger the fade-in for smooth transitions
+            if (isInitial) {
+                // Initial load: show immediately with staggered animation
+                setTimeout(() => {
+                    cell.classList.add('card-visible');
+                }, i * 100);
+            } else {
+                // Transition: fade in after previous cards fade out
+                setTimeout(() => {
+                    cell.classList.remove('card-hidden');
+                    cell.classList.add('card-visible');
+                }, this.config.fadeDuration * 0.5 + (i * 100));
+            }
+        });
+    }
+
+    startSequenceCycle() {
+        // Cycle through sequences every sequenceInterval
+        const intervalId = setInterval(() => {
+            // Move to next sequence (loop back to 0 after last one)
+            this.currentSequenceIndex = (this.currentSequenceIndex + 1) % this.config.sequences.length;
+            this.showSequence(this.currentSequenceIndex);
+        }, this.config.sequenceInterval);
         
         this.animationIntervals.push(intervalId);
     }
@@ -421,49 +373,3 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Club Studio Header initialized');
 });
 
-// ===================================
-// RESPONSIVE GRID ADJUSTMENT
-// ===================================
-function updateGridForMobile() {
-    if (window.innerWidth <= 768) {
-        CONFIG.gridColumns = 3;
-        CONFIG.gridRows = 6;
-        CONFIG.activeGridCells = [
-            { index: 2, borderRadius: '12px', image: 0 },
-            { index: 5, borderRadius: '10px', image: 1 },
-            { index: 8, borderRadius: '12px', image: 2 },
-            { index: 12, borderRadius: '10px', image: 3 },
-            { index: 15, borderRadius: '12px', image: 4 }
-        ];
-    } else {
-        CONFIG.gridColumns = 6;
-        CONFIG.gridRows = 4;
-        CONFIG.activeGridCells = [
-            { index: 0, borderRadius: '12px', image: 0 },
-            { index: 4, borderRadius: '12px', image: 1 },
-            { index: 6, borderRadius: '8.4px', image: 2 },
-            { index: 11, borderRadius: '9.282px', image: 3 },
-            { index: 12, borderRadius: '9.282px', image: 4 },
-            { index: 13, borderRadius: '12px', image: 5 },
-            { index: 16, borderRadius: '9.6px', image: 6 },
-            { index: 17, borderRadius: '12px', image: 0 },
-            { index: 21, borderRadius: '12px', image: 1 }
-        ];
-    }
-}
-
-// Update on resize (debounced)
-let resizeTimeout;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-        updateGridForMobile();
-        
-        // Reinitialize grid if needed
-        if (window.floatingGrid) {
-            window.floatingGrid.destroy();
-            document.querySelector('.grid-overlay').innerHTML = '';
-            window.floatingGrid = new FloatingHeaderGrid(CONFIG);
-        }
-    }, 250);
-});
