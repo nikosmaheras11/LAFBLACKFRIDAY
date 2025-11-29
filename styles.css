@@ -953,6 +953,8 @@ html {
     
     .stat-card {
         min-height: 140px;
+        align-items: center;
+        text-align: center;
     }
     
     .stat-number {
