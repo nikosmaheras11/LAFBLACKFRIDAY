@@ -183,6 +183,33 @@ class TestimonialsCarousel {
 }
 
 // ===================================
+// GEO-LOCATION PREFILL FOR JOIN LINKS
+// ===================================
+(async function prefillLocation() {
+    try {
+        const res = await fetch('https://ipinfo.io/json');
+        const data = await res.json();
+        
+        // ipinfo returns postal and city
+        const { postal, city } = data;
+        
+        const baseUrl = 'https://lafitness.com/Pages/MembershipSignUpSearch.aspx';
+        const joinUrl = postal 
+            ? `${baseUrl}?zip=${postal}` 
+            : `${baseUrl}?city=${encodeURIComponent(city)}`;
+        
+        // Update all join/signup links
+        document.querySelectorAll('a[href*="MembershipSignUpSearch"]').forEach(link => {
+            link.href = joinUrl;
+        });
+        
+        console.log('Location prefilled:', postal || city);
+    } catch (e) {
+        console.log('Location detection failed');
+    }
+})();
+
+// ===================================
 // INITIALIZE ON LOAD
 // ===================================
 document.addEventListener('DOMContentLoaded', () => {
