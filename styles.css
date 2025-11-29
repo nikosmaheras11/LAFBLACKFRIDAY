@@ -27,31 +27,42 @@ main {
 }
 
 /* ===================================
-   FLOATING BACKGROUND GRID - 5x3 FADE ANIMATION
+   HERO GRID BACKGROUND
    =================================== */
-.floating-bg-container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background: #ffffff;
-    overflow: hidden;
-}
-
-.grid-overlay {
-    display: grid;
+/* Container for the entire grid */
+.hero-grid-container {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    overflow: hidden;
+    z-index: 1;
+    background: #ffffff;
 }
 
+/* Grid layout - 5 columns x 3 rows on desktop */
+.hero-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 100%;
+    height: 100%;
+    gap: 10px;
+    padding: 20px;
+}
+
+/* Individual grid cell */
 .grid-cell {
     position: relative;
+    background: transparent;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/* Images within cells */
 .grid-img {
     width: 100%;
     max-width: 20rem;
@@ -60,47 +71,29 @@ main {
     border-radius: 1rem;
     opacity: 0;
     transform: scale(1.02);
-    animation: gridFade 22.5s linear infinite;
+    animation: heroGridFloat 30s ease-in-out infinite;
 }
 
-/* Hidden grid cells (for center area behind hero text) */
-.grid-cell-hidden {
-    visibility: hidden;
-    pointer-events: none;
-}
-
-/* Hide images in center cells 7-9 to avoid interfering with hero text */
-.grid-cell:nth-child(7) .grid-img,
-.grid-cell:nth-child(8) .grid-img,
-.grid-cell:nth-child(9) .grid-img {
+/* Hide center row on desktop (cells 6-10) */
+.grid-cell-center {
     display: none;
 }
 
-/* Timeline Order (non-adjacent sequence) */
-.grid-cell:nth-child(1)  .grid-img { animation-delay: 0s; }
-.grid-cell:nth-child(7)  .grid-img { animation-delay: 1.5s; }
-.grid-cell:nth-child(3)  .grid-img { animation-delay: 3s; }
-.grid-cell:nth-child(6)  .grid-img { animation-delay: 4.5s; }
-.grid-cell:nth-child(2)  .grid-img { animation-delay: 6s; }
-.grid-cell:nth-child(8)  .grid-img { animation-delay: 7.5s; }
-.grid-cell:nth-child(11) .grid-img { animation-delay: 9s; }
-.grid-cell:nth-child(4)  .grid-img { animation-delay: 10.5s; }
-.grid-cell:nth-child(12) .grid-img { animation-delay: 12s; }
-.grid-cell:nth-child(5)  .grid-img { animation-delay: 13.5s; }
-.grid-cell:nth-child(14) .grid-img { animation-delay: 15s; }
-.grid-cell:nth-child(10) .grid-img { animation-delay: 16.5s; }
-.grid-cell:nth-child(13) .grid-img { animation-delay: 18s; }
-.grid-cell:nth-child(9)  .grid-img { animation-delay: 19.5s; }
-.grid-cell:nth-child(15) .grid-img { animation-delay: 21s; }
+/* Desktop animation delays - balanced to prevent adjacent cells animating together */
+.grid-cell[data-position="1"] .grid-img { animation-delay: 0s; }
+.grid-cell[data-position="2"] .grid-img { animation-delay: 6s; }
+.grid-cell[data-position="3"] .grid-img { animation-delay: 12s; }
+.grid-cell[data-position="4"] .grid-img { animation-delay: 18s; }
+.grid-cell[data-position="5"] .grid-img { animation-delay: 24s; }
+.grid-cell[data-position="11"] .grid-img { animation-delay: 3s; }
+.grid-cell[data-position="12"] .grid-img { animation-delay: 9s; }
+.grid-cell[data-position="13"] .grid-img { animation-delay: 15s; }
+.grid-cell[data-position="14"] .grid-img { animation-delay: 21s; }
+.grid-cell[data-position="15"] .grid-img { animation-delay: 27s; }
 
-/* 
-   KEYFRAMES
-   FADE IN  : 0% → 10%
-   HOLD     : 10% → 25%
-   FADE OUT : 25% → 30%  (twice faster)
-*/
-@keyframes gridFade {
-    0% {
+/* Floating animation keyframes */
+@keyframes heroGridFloat {
+    0%, 100% {
         opacity: 0;
         transform: scale(1.02);
     }
@@ -112,10 +105,6 @@ main {
         opacity: 1;
     }
     30% {
-        opacity: 0;
-        transform: scale(1.02);
-    }
-    100% {
         opacity: 0;
         transform: scale(1.02);
     }
@@ -476,10 +465,33 @@ main {
         margin-left: auto;
     }
 
-    .grid-overlay {
+    /* Mobile: 3 columns x 5 rows grid */
+    .hero-grid {
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(5, 1fr);
     }
+    
+    /* Show center row cells on mobile */
+    .grid-cell-center {
+        display: flex;
+    }
+    
+    /* Mobile animation delays for all 15 cells */
+    .grid-cell[data-position="1"] .grid-img { animation-delay: 0s; }
+    .grid-cell[data-position="2"] .grid-img { animation-delay: 4s; }
+    .grid-cell[data-position="3"] .grid-img { animation-delay: 8s; }
+    .grid-cell[data-position="4"] .grid-img { animation-delay: 12s; }
+    .grid-cell[data-position="5"] .grid-img { animation-delay: 16s; }
+    .grid-cell[data-position="6"] .grid-img { animation-delay: 20s; }
+    .grid-cell[data-position="7"] .grid-img { animation-delay: 24s; }
+    .grid-cell[data-position="8"] .grid-img { animation-delay: 28s; }
+    .grid-cell[data-position="9"] .grid-img { animation-delay: 2s; }
+    .grid-cell[data-position="10"] .grid-img { animation-delay: 6s; }
+    .grid-cell[data-position="11"] .grid-img { animation-delay: 10s; }
+    .grid-cell[data-position="12"] .grid-img { animation-delay: 14s; }
+    .grid-cell[data-position="13"] .grid-img { animation-delay: 18s; }
+    .grid-cell[data-position="14"] .grid-img { animation-delay: 22s; }
+    .grid-cell[data-position="15"] .grid-img { animation-delay: 26s; }
     
     .site-header {
         top: 16px;
@@ -551,8 +563,8 @@ main {
         flex-direction: column;
     }
     
-    .floating-bg-container {
-        height: 50vh;
+    .hero-grid-container {
+        height: 55vh;
         min-height: 350px;
         position: relative;
         flex-shrink: 0;
