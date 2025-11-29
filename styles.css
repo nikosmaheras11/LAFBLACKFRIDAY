@@ -498,19 +498,32 @@ main {
         font-size: 14px;
     }
     
-    /* Mobile: Position hero content at bottom */
+    /* Mobile: Hero section layout */
+    .hero-section {
+        height: auto;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .floating-bg-container {
+        height: 50vh;
+        min-height: 350px;
+        position: relative;
+        flex-shrink: 0;
+    }
+    
+    /* Mobile: Content flows below images */
     .hero-content {
+        position: relative;
         top: auto;
-        bottom: 0;
-        left: 0;
-        right: 0;
+        left: auto;
+        bottom: auto;
         transform: none;
         align-items: flex-start;
         width: 100%;
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        padding: 56px 32px;
+        background: white;
+        padding: 40px 24px 60px;
     }
     
     .text-wrap {
@@ -523,8 +536,18 @@ main {
         text-align: left;
     }
     
+    .hero-heading {
+        font-size: 40px;
+        max-width: 100%;
+    }
+    
     .hero-cta {
         align-items: flex-start;
+    }
+    
+    .expiration-text {
+        color: #ffbc15;
+        text-transform: uppercase;
     }
 }
 
