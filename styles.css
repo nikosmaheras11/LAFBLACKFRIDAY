@@ -68,14 +68,18 @@ main {
     max-width: 20rem;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    border-radius: 1rem;
+    border-radius: 12px;
     opacity: 0;
     transform: scale(1.02);
     animation: heroGridFloat 30s ease-in-out infinite;
 }
 
-/* Hide center row on desktop (cells 6-10) */
+/* Hide center row on desktop (cells 6-10) - never fills behind text */
 .grid-cell-center {
+    display: none;
+}
+
+.grid-cell-center .grid-img {
     display: none;
 }
 
@@ -199,6 +203,7 @@ main {
     display: flex;
     align-items: center;
     gap: 4px;
+    height: 40px;
 }
 
 .nav-item a::after {
@@ -304,6 +309,9 @@ main {
     font-size: 16px;
     font-weight: 600;
     transition: all 0.3s ease;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
 }
 
 .join-btn:hover {
@@ -358,12 +366,12 @@ main {
         transform: translate(-50%, -150%);
         width: calc(100% - 32px);
         max-width: 480px;
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(20, 20, 43, 0.08);
+        border: 1px solid rgba(20, 20, 43, 0.12);
         border-radius: 12px;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
         opacity: 0;
         transition: all 0.3s ease;
         pointer-events: none;
@@ -394,6 +402,11 @@ main {
         padding: 0;
         border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         padding-bottom: 12px;
+    }
+    
+    /* Remove border from last regular nav-item (Mobile item) */
+    .nav-item:nth-last-child(2) {
+        border-bottom: none;
     }
     
     .nav-item:last-child {
@@ -474,6 +487,10 @@ main {
     /* Show center row cells on mobile */
     .grid-cell-center {
         display: flex;
+    }
+    
+    .grid-cell-center .grid-img {
+        display: block;
     }
     
     /* Mobile animation delays for all 15 cells */
