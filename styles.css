@@ -79,7 +79,10 @@ main {
     display: none;
 }
 
-.grid-cell-center .grid-img {
+/* Hide images in center 4 cells on desktop only */
+.grid-cell[data-position="7"] .grid-img,
+.grid-cell[data-position="8"] .grid-img,
+.grid-cell[data-position="9"] .grid-img {
     display: none;
 }
 
@@ -301,7 +304,7 @@ main {
 }
 
 .join-btn {
-    padding: 8px 20px;
+    padding: 10px 24px;
     border: 1px solid rgba(20, 20, 43, 0.5);
     border-radius: 12px;
     text-decoration: none;
@@ -489,7 +492,10 @@ main {
         display: flex;
     }
     
-    .grid-cell-center .grid-img {
+    /* Show images in all cells on mobile (override desktop hide) */
+    .grid-cell[data-position="7"] .grid-img,
+    .grid-cell[data-position="8"] .grid-img,
+    .grid-cell[data-position="9"] .grid-img {
         display: block;
     }
     
@@ -564,8 +570,16 @@ main {
     }
     
     .black-friday-btn {
-        font-size: 16px;
-        padding: 6px 16px;
+        font-size: 14px;
+        padding: 8px 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+        white-space: nowrap;
+    }
+    
+    .btn-label,
+    .btn-timer {
+        white-space: nowrap;
     }
     
     .expiration-text {
