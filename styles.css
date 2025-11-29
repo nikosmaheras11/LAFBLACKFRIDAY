@@ -498,9 +498,8 @@ main {
     }
     
     .dropdown-menu li a::after {
-        content: '→';
-        font-size: 16px;
-        margin-left: auto;
+        display: none;
+        content: none;
     }
 
     /* ===== MOBILE HERO SECTION - FIXED STACKING ===== */
