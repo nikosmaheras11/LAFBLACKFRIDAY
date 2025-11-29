@@ -540,12 +540,16 @@ main {
         display: none;
     }
 
-    /* Show specific cells to match Figma static layout */
+    /* Show specific cells to match Figma static layout
+       Row 1: [1] [ ] [5]
+       Row 2: [6] [ ] [10]
+       Row 3: [ ] [12] [ ]
+    */
     .grid-cell[data-position="1"],
+    .grid-cell[data-position="5"],
     .grid-cell[data-position="6"],
-    .grid-cell[data-position="8"],
-    .grid-cell[data-position="12"],
-    .grid-cell[data-position="5"]
+    .grid-cell[data-position="10"],
+    .grid-cell[data-position="12"]
     {
         display: flex;
         background: #efefef;
@@ -555,10 +559,10 @@ main {
 
     /* Place them on a 3x3 grid explicitly */
     .grid-cell[data-position="1"]  { grid-column: 1; grid-row: 1; }
-    .grid-cell[data-position="6"]  { grid-column: 1; grid-row: 2; }
-    .grid-cell[data-position="8"]  { grid-column: 3; grid-row: 2; }
-    .grid-cell[data-position="12"] { grid-column: 2; grid-row: 3; }
     .grid-cell[data-position="5"]  { grid-column: 3; grid-row: 1; }
+    .grid-cell[data-position="6"]  { grid-column: 1; grid-row: 2; }
+    .grid-cell[data-position="10"] { grid-column: 3; grid-row: 2; }
+    .grid-cell[data-position="12"] { grid-column: 2; grid-row: 3; }
 
     /* Static image styling - no animation */
     .grid-img {
@@ -793,9 +797,10 @@ main {
         width: 100% !important;
         max-width: 100% !important;
         height: auto !important;
-        margin-top: 20px;
+        margin-top: 32px;
         font-size: 14px;
-        padding: 10px 16px;
+        padding: 12px 16px;
+        justify-content: center;
     }
     
     .reality-cta-btn .btn-label {
@@ -1695,12 +1700,14 @@ html {
     margin-top: 8px;
 }
 
-/* Reality CTA Button */
+/* Reality CTA Button - positioned after grid content */
 .reality-cta-btn {
-    margin-top: 31px;
+    margin-top: 48px;
     width: 421.328px;
+    max-width: 100%;
     height: 46px;
     text-decoration: none;
+    align-self: flex-start;
 }
 
 .reality-cta-btn .btn-label {
