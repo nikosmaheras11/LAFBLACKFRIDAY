@@ -12,6 +12,13 @@ body {
     overflow-x: hidden;
 }
 
+@media (max-width: 768px) {
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 main {
     position: relative;
 }
@@ -1213,9 +1220,14 @@ html {
     font-weight: 700;
 }
 
+.item-text-spacing {
+    margin-top: 8px;
+}
+
 /* Responsive Reality Section */
 @media (max-width: 768px) {
     .reality-section {
+        order: 999; /* Move to end on mobile */
         padding: 48px 24px;
     }
     
