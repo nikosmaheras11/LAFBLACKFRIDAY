@@ -511,7 +511,7 @@ main {
         background: #fff;
         display: flex;
         flex-direction: column;
-        overflow: visible;
+        overflow: hidden;
     }
     
     /* Grid container - RELATIVE positioning, fixed height */
@@ -519,7 +519,7 @@ main {
         position: relative;
         width: 100%;
         height: 462px;
-        overflow: visible;
+        overflow: hidden;
         flex-shrink: 0;
     }
     
@@ -744,29 +744,184 @@ main {
         letter-spacing: -0.18px;
         line-height: 1.1;
     }
+
+    /* ===== MOBILE BUTTON STANDARDIZATION ===== */
+    
+    /* All CTA buttons - consistent base styling */
+    .black-friday-btn,
+    .promo-btn,
+    .cta-promo-btn,
+    .free-pass-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 10px 16px;
+        font-size: 14px;
+        border-radius: 10px;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        width: auto;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Hero Black Friday button - slightly larger */
+    .hero-cta .black-friday-btn {
+        font-size: 16px;
+        padding: 8px 14px;
+        gap: 5px;
+    }
+    
+    .hero-cta .btn-label,
+    .hero-cta .btn-timer {
+        font-size: 16px;
+    }
+    
+    .hero-cta .divider {
+        height: 14px;
+        width: 1px;
+    }
+    
+    .hero-cta .arrow-icon {
+        width: 16px;
+        height: 16px;
+    }
+    
+    /* Reality section CTA button - CRITICAL FIX */
+    .reality-cta-btn {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        margin-top: 20px;
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+    
+    .reality-cta-btn .btn-label {
+        font-size: 14px;
+    }
+    
+    .reality-cta-btn .divider {
+        height: 14px;
+        width: 1px;
+    }
+    
+    .reality-cta-btn .arrow-icon {
+        width: 16px;
+        height: 16px;
+    }
+    
+    /* Promo button (offerings section) */
+    .promo-btn {
+        font-size: 14px;
+        padding: 10px 16px;
+        gap: 6px;
+    }
+    
+    .promo-label,
+    .promo-text {
+        font-size: 14px;
+        white-space: nowrap;
+    }
+    
+    .promo-divider {
+        height: 14px;
+        width: 1px;
+    }
+    
+    .promo-arrow {
+        width: 16px;
+        height: 16px;
+    }
+    
+    /* CTA section promo button */
+    .cta-promo-btn {
+        font-size: 14px;
+        padding: 10px 16px;
+        gap: 6px;
+    }
+    
+    .cta-promo-label,
+    .cta-promo-text {
+        font-size: 14px;
+        white-space: nowrap;
+    }
+    
+    .cta-promo-divider {
+        height: 14px;
+        width: 1px;
+    }
+    
+    .cta-promo-arrow {
+        width: 16px;
+        height: 16px;
+    }
+    
+    /* Free pass button */
+    .free-pass-btn {
+        width: 100%;
+        justify-content: center;
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+    
+    .free-pass-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    /* Pricing breakdowns - ensure they don't overflow */
+    .pricing-breakdown,
+    .cta-pricing-breakdown {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
 }
 
 /* ===================================
    SMALLER MOBILE BREAKPOINT
    =================================== */
 @media (max-width: 380px) {
+    /* Smaller text for very small screens */
     .black-friday-btn,
-    .promo-btn {
+    .promo-btn,
+    .cta-promo-btn {
         font-size: 12px;
-        padding: 6px 10px;
+        padding: 8px 10px;
         gap: 4px;
     }
     
     .btn-label,
     .btn-timer,
     .promo-label,
-    .promo-text {
-        font-size: 11px;
+    .promo-text,
+    .cta-promo-label,
+    .cta-promo-text {
+        font-size: 12px;
     }
     
+    /* Hide dividers on very small screens to save space */
     .divider,
-    .promo-divider {
+    .promo-divider,
+    .cta-promo-divider {
         display: none;
+    }
+    
+    .arrow-icon,
+    .promo-arrow,
+    .cta-promo-arrow {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .hero-heading {
+        font-size: 42px;
+    }
+    
+    .reality-cta-btn .btn-label {
+        font-size: 12px;
     }
 }
 
