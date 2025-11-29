@@ -86,17 +86,24 @@ main {
     display: none;
 }
 
-/* Desktop animation delays - balanced to prevent adjacent cells animating together */
-.grid-cell[data-position="1"] .grid-img { animation-delay: 0s; }
-.grid-cell[data-position="2"] .grid-img { animation-delay: 6s; }
-.grid-cell[data-position="3"] .grid-img { animation-delay: 12s; }
-.grid-cell[data-position="4"] .grid-img { animation-delay: 18s; }
-.grid-cell[data-position="5"] .grid-img { animation-delay: 24s; }
-.grid-cell[data-position="11"] .grid-img { animation-delay: 3s; }
-.grid-cell[data-position="12"] .grid-img { animation-delay: 9s; }
-.grid-cell[data-position="13"] .grid-img { animation-delay: 15s; }
-.grid-cell[data-position="14"] .grid-img { animation-delay: 21s; }
-.grid-cell[data-position="15"] .grid-img { animation-delay: 27s; }
+/* Desktop animation delays - only animate edge cells, skip center (7, 8, 9) */
+/* Grid visual:
+   [1]  [2]  [3]  [4]  [5]     ← Row 1 (all animate)
+   [6]  [7]  [8]  [9]  [10]    ← Row 2 (only 6 & 10 animate, 7-8-9 hidden)
+   [11] [12] [13] [14] [15]    ← Row 3 (all animate)
+*/
+.grid-cell[data-position="1"] .grid-img { animation-delay: 0s; }      /* Top left */
+.grid-cell[data-position="5"] .grid-img { animation-delay: 2s; }      /* Top right */
+.grid-cell[data-position="11"] .grid-img { animation-delay: 4s; }     /* Bottom left */
+.grid-cell[data-position="15"] .grid-img { animation-delay: 6s; }     /* Bottom right */
+.grid-cell[data-position="2"] .grid-img { animation-delay: 8s; }      /* Top row */
+.grid-cell[data-position="4"] .grid-img { animation-delay: 10s; }     /* Top row */
+.grid-cell[data-position="6"] .grid-img { animation-delay: 12s; }     /* Middle left */
+.grid-cell[data-position="10"] .grid-img { animation-delay: 14s; }    /* Middle right */
+.grid-cell[data-position="12"] .grid-img { animation-delay: 16s; }    /* Bottom row */
+.grid-cell[data-position="14"] .grid-img { animation-delay: 18s; }    /* Bottom row */
+.grid-cell[data-position="3"] .grid-img { animation-delay: 20s; }     /* Top center-ish */
+.grid-cell[data-position="13"] .grid-img { animation-delay: 22s; }    /* Bottom center-ish */
 
 /* Floating animation keyframes */
 @keyframes heroGridFloat {
