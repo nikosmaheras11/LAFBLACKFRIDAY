@@ -429,6 +429,13 @@ main {
         padding-bottom: 12px;
     }
     
+    /* Make dropdown parent a column container */
+    .nav-item.dropdown {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
     /* Remove border from last regular nav-item (Mobile item) */
     .nav-item:nth-last-child(2) {
         border-bottom: none;
