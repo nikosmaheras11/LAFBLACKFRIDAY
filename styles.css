@@ -74,16 +74,17 @@ main {
     animation: heroGridFloat 30s ease-in-out infinite;
 }
 
-/* Hide center row on desktop (cells 6-10) - never fills behind text */
+/* Center row cells (6-10) - Must be visible to maintain grid structure */
 .grid-cell-center {
-    display: none;
+    display: flex;
 }
 
-/* Hide images in center 4 cells on desktop only */
+/* Hide images in center cells (7, 8, 9) on desktop to protect text */
 .grid-cell[data-position="7"] .grid-img,
 .grid-cell[data-position="8"] .grid-img,
 .grid-cell[data-position="9"] .grid-img {
     display: none;
+    visibility: hidden;
 }
 
 /* Desktop animation delays - only animate edge cells, skip center (7, 8, 9) */
@@ -504,6 +505,7 @@ main {
     .grid-cell[data-position="8"] .grid-img,
     .grid-cell[data-position="9"] .grid-img {
         display: block;
+        visibility: visible;
     }
     
     /* Mobile animation delays for all 15 cells */
