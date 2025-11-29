@@ -465,6 +465,29 @@ main {
     .expiration-text {
         font-size: 14px;
     }
+    
+    /* Mobile: Left-align hero content */
+    .hero-content {
+        left: 32px;
+        right: 32px;
+        transform: translateY(-50%);
+        align-items: flex-start;
+        width: calc(100% - 64px);
+    }
+    
+    .text-wrap {
+        align-items: flex-start;
+        width: 100%;
+    }
+    
+    .hero-eyebrow,
+    .hero-heading {
+        text-align: left;
+    }
+    
+    .hero-cta {
+        align-items: flex-start;
+    }
 }
 
 /* ===================================
